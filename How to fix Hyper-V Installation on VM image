@@ -1,0 +1,31 @@
+To Enable Hyper-V on VM if it does not work (This is done in the host PC not in VM.). 
+
+  
+
+Turn on the Hyper-V features by going into “Turn Windows features on or off”. 
+
+Also check if “Virtual Machine Platform” is checked on. 
+
+You will need to restart to continue. 
+
+Go into CMD as admin, type in Systeminfo.exe and go all down for information. Also go into “task manager” and click on CPU and check if “Virtualization is enabled”. 
+
+Right click on the VM image and click on “Open VM Directory” 
+
+Right click on the file that are marked and open with notepad ++ or a normal textpad. 
+
+Scroll down in the text file and find vhv.enable = “TRUE” and make sure its “TRUE”. 
+
+Go to “Core Isolation” and turn it off” and restart the computer. 
+
+Try to turn on the VM Image with the “Virualize Intel VT-x/EPT or AMD-V/RVI” enabled. If it fails, go to CMD as admin and check Systeminfo.exe 
+
+All down if it stands “A Hypervisor has been detected. Features required for Hyper-V will not be displayed.” We will continue… 
+
+Type in the command: bcdedit /set hypervisorlaunchtype off 
+
+If that worked, great!  
+
+If this did not work, go into PowerShell as administrator. And write this command: Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Hypervisor 
+
+Restart/reboot the computer and turn on the VM image and the Hyper-V installation should now work on the Windows Server 2022. 
